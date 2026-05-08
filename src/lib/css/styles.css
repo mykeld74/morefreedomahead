@@ -273,12 +273,11 @@ a:hover {
 
 .heroFullBleed {
 	position: relative;
-	left: 50%;
 	width: 100dvw;
 	height: 100vh;
 	max-width: 100dvw;
-	margin-left: 0;
-	transform: translateX(-50%);
+	margin-left: calc(50% - 50dvw);
+	margin-right: calc(50% - 50dvw);
 	border-radius: 0;
 	border: none;
 }
@@ -496,7 +495,6 @@ section {
 	.keynoteGrid .keynoteCard:nth-child(3) {
 		animation-range: entry 40% cover 62%;
 	}
-
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -709,6 +707,29 @@ td {
 }
 
 @media (max-width: 780px) {
+	html,
+	body {
+		max-width: 100%;
+		overflow-x: hidden;
+	}
+
+	.container {
+		max-width: 100%;
+		padding: 0 0.9rem;
+	}
+
+	.heroFullBleed {
+		width: 100dvw;
+		max-width: 100dvw;
+		margin-left: calc(50% - 50dvw);
+		margin-right: calc(50% - 50dvw);
+	}
+
+	.heroContent {
+		max-width: 100%;
+		padding: clamp(1rem, 5vw, 1.5rem);
+	}
+
 	.navToggle {
 		display: grid;
 		gap: 5px;
@@ -720,9 +741,44 @@ td {
 	}
 
 	.navRow {
-		grid-template-columns: 1fr auto;
+		grid-template-columns: minmax(0, 1fr) auto;
+		column-gap: 0.65rem;
 		padding: 0.75rem 0;
 	}
+
+	.siteBrand,
+	.siteLogo {
+		min-width: 0;
+	}
+
+	.siteLogo {
+		width: clamp(132px, 44vw, 182px);
+	}
+
+	section {
+		padding: 1rem;
+	}
+
+	.featureCard,
+	.eventCard,
+	.pillarCard,
+	.testimonialCard,
+	.featureItem,
+	.eventItem,
+	.testimonialItem,
+	.keynoteCard,
+	.introAccentCard {
+		min-width: 0;
+	}
+
+	h1,
+	h2,
+	h3,
+	p,
+	a {
+		overflow-wrap: anywhere;
+	}
+
 	.homeIntro,
 	.cardGrid,
 	.flowGrid,
