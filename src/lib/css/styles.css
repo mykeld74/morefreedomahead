@@ -370,6 +370,64 @@ section {
 	background: linear-gradient(90deg, transparent, var(--lineColor), transparent);
 }
 
+.beliefsSection {
+	background: transparent;
+	border: 0;
+	box-shadow: none;
+	padding: clamp(2.25rem, 5vw, 3.25rem) clamp(1rem, 3vw, 2rem);
+	text-align: center;
+}
+
+.beliefsSection h2 {
+	margin: 0 0 clamp(1.75rem, 4vw, 2.5rem);
+	max-width: none;
+	color: var(--mutedTextColor);
+	font-size: clamp(1.25rem, 2.6vw, 1.75rem);
+	letter-spacing: 0.06em;
+	text-transform: uppercase;
+}
+
+.beliefsGrid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.beliefColumn {
+	padding: clamp(1rem, 2.5vw, 1.75rem) clamp(0.85rem, 2vw, 1.5rem);
+	border-left: 1px solid var(--lineColor);
+}
+
+.beliefColumn:first-child {
+	border-left: none;
+}
+
+.beliefColumn h3 {
+	margin: 0 auto;
+	max-width: 20ch;
+	font-size: clamp(0.92rem, 1.65vw, 1.08rem);
+	font-weight: 700;
+	line-height: 1.5;
+	letter-spacing: 0.04em;
+	text-transform: uppercase;
+	color: var(--textColor);
+}
+
+.beliefColumn h3 em {
+	font-style: italic;
+	font-weight: inherit;
+}
+
+.beliefBody {
+	margin: 0.85rem auto 0;
+	max-width: 28ch;
+	text-align: center;
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-size: clamp(0.88rem, 1.4vw, 1rem);
+	font-style: italic;
+	line-height: 1.65;
+	color: var(--mutedTextColor);
+}
+
 .homeIntro {
 	display: grid;
 	grid-template-columns: 1.35fr 1fr;
@@ -401,7 +459,13 @@ section {
 
 .keynoteSection h2 {
 	text-align: center;
-	color: var(--primaryColor);
+	color: var(--mutedTextColor);
+}
+
+.keynoteIntro {
+	max-width: 48ch;
+	margin: 0 auto 1.25rem;
+	text-align: center;
 }
 
 .keynoteGrid {
@@ -412,16 +476,25 @@ section {
 
 .keynoteCard {
 	display: grid;
-	align-content: start;
+	grid-template-rows: auto auto 1fr auto;
+	height: 100%;
 	gap: 0.6rem;
-	background: var(--surfaceColor);
-	border: 1px solid var(--lineColor);
-	border-radius: 12px;
-	padding: 0.85rem;
+	background: transparent;
+	border: 0;
+	padding: 0;
 }
 
 .keynoteCard h3 {
 	margin: 0.2rem 0 0;
+}
+
+.keynoteCard p {
+	margin: 0;
+	max-width: none;
+}
+
+.keynoteCard a {
+	align-self: start;
 }
 
 .keynoteImage {
@@ -442,24 +515,6 @@ section {
 	to {
 		opacity: 1;
 		transform: translate3d(0, 0, 0);
-	}
-}
-
-@keyframes encounterFadeIn {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes encounterFadeInTimed {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
 	}
 }
 
@@ -497,41 +552,11 @@ section {
 	}
 }
 
-@media (prefers-reduced-motion: no-preference) {
-	.encounterSection .featureItem {
-		opacity: 0;
-	}
-
-	.encounterSection.encounterSectionActive .featureItem {
-		animation-name: encounterFadeInTimed;
-		animation-duration: 900ms;
-		animation-fill-mode: both;
-		animation-timing-function: ease-out;
-	}
-
-	.encounterSection.encounterSectionActive .featureItem:nth-child(1) {
-		animation-delay: 0ms;
-	}
-
-	.encounterSection.encounterSectionActive .featureItem:nth-child(2) {
-		animation-delay: 340ms;
-	}
-
-	.encounterSection.encounterSectionActive .featureItem:nth-child(3) {
-		animation-delay: 680ms;
-	}
-}
-
 @media (prefers-reduced-motion: reduce) {
 	.keynoteCard {
 		animation: none !important;
 		opacity: 1 !important;
 		transform: none !important;
-	}
-
-	.encounterSection .featureItem {
-		animation: none !important;
-		opacity: 1 !important;
 	}
 }
 
@@ -539,7 +564,6 @@ section {
 .eventCard,
 .pillarCard,
 .testimonialCard,
-.featureItem,
 .eventItem,
 .testimonialItem {
 	height: 100%;
@@ -547,14 +571,6 @@ section {
 	border-radius: 14px;
 	border: 1px solid var(--lineColor);
 	background: var(--surfaceColor);
-}
-
-.featureItem {
-	background: var(--surfaceColor);
-	border: 1px solid var(--lineColor);
-	border-left: 3px solid var(--primaryColor);
-	border-radius: 0;
-	padding: 0.85rem 0.9rem 0.85rem 1rem;
 }
 
 .eventItem {
@@ -763,7 +779,6 @@ td {
 	.eventCard,
 	.pillarCard,
 	.testimonialCard,
-	.featureItem,
 	.eventItem,
 	.testimonialItem,
 	.keynoteCard,
@@ -783,10 +798,30 @@ td {
 	.cardGrid,
 	.flowGrid,
 	.keynoteGrid,
+	.beliefsGrid,
 	.pillarGrid,
 	.testimonialGrid {
 		grid-template-columns: 1fr;
 	}
+
+	.beliefColumn {
+		border-left: none;
+		border-top: 1px solid var(--lineColor);
+	}
+
+	.beliefColumn:first-child {
+		border-top: none;
+	}
+}
+.learnMoreButton {
+	display: grid;
+	place-items: center;
+	border-radius: 999px;
+	border: 1px solid var(--primaryColor);
+	width: fit-content;
+	padding: 0.65rem 1.2rem;
+	font-weight: 600;
+	transition: color 220ms ease;
 }
 
 @keyframes fadeIn {

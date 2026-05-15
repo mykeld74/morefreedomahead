@@ -1,81 +1,70 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import { onMount } from 'svelte';
 	import backgroundVideo from '$lib/assets/backgroundVideo-compressed.mp4';
 	let { data } = $props();
-	let encounterAnimationStarted = $state(false);
 
 	const encounterPaths = [
 		{
+			id: 'retreats',
 			title: 'Retreats',
 			description: 'Immersive spaces to rest, listen, and receive.',
-			path: '/events' as const
+			path: '/events' as const,
+			imageUrl: 'https://picsum.photos/seed/morefreedomencounter1/900/900'
 		},
 		{
+			id: 'speaking',
 			title: 'Speaking',
 			description: 'Spirit-led messages that move women from fear to trust.',
-			path: '/speaking' as const
+			path: '/speaking' as const,
+			imageUrl: 'https://picsum.photos/seed/morefreedomencounter2/900/900'
 		},
 		{
+			id: 'support',
 			title: '1:1 Support',
 			description: 'Personal discipleship for healing, surrender, and steady growth.',
-			path: '/contact' as const
+			path: '/contact' as const,
+			imageUrl: 'https://picsum.photos/seed/morefreedomencounter3/900/900'
+		}
+	];
+
+	type BeliefPart = { type: 'text'; value: string } | { type: 'em'; value: string };
+
+	const coreBeliefs: { id: string; parts: BeliefPart[] }[] = [
+		{
+			id: 'eager-healing',
+			parts: [
+				{ type: 'text', value: 'Jesus is ' },
+				{ type: 'em', value: 'eager' },
+				{ type: 'text', value: ' to heal you.' }
+			]
+		},
+		{
+			id: 'spirit-led',
+			parts: [{ type: 'text', value: 'Holy Spirit leads the process – pressure off.' }]
+		},
+		{
+			id: 'freedom-promised',
+			parts: [{ type: 'text', value: "It's time to walk confidently in freedom promised." }]
 		}
 	];
 
 	const faithPillars = [
 		{
+			id: 'speaks-to-you',
 			title: 'Loves to Speak to You',
-			body: 'Together we create space to listen, bring your needs honestly, and reconnect to His nearness.',
-			imageUrl: 'https://picsum.photos/seed/morefreedomfaith1/900/900'
+			body: 'Together we create space to listen, bring your needs honestly, and reconnect to His nearness.'
 		},
 		{
+			id: 'trustworthy',
 			title: 'Is Trustworthy',
-			body: 'We process hurt with Him and recover His true character as good, gentle, and powerful.',
-			imageUrl: 'https://picsum.photos/seed/morefreedomfaith2/900/900'
+			body: 'We process hurt with Him and recover His true character as good, gentle, and powerful.'
 		},
 		{
+			id: 'bring-healing',
 			title: 'Wants to Bring Healing',
-			body: 'Emotional restoration, physical healing, and redemption in the details of your story.',
-			imageUrl: 'https://picsum.photos/seed/morefreedomfaith3/900/900'
+			body: 'Emotional restoration, physical healing, and redemption in the details of your story.'
 		}
 	];
-
-	onMount(() => {
-		const sectionNode = document.getElementById('encounterSection');
-		if (!sectionNode) {
-			return;
-		}
-
-		const observer = new IntersectionObserver(
-			(entries) => {
-				const [entry] = entries;
-				if (!entry) {
-					return;
-				}
-
-				if (entry.isIntersecting && entry.intersectionRatio >= 0.75) {
-					encounterAnimationStarted = true;
-					return;
-				}
-
-				/*
-				 * Reset only when section is fully out of view below the viewport
-				 * so it can replay on the next downward scroll.
-				 */
-				if (entry.intersectionRatio === 0 && entry.boundingClientRect.top >= window.innerHeight) {
-					encounterAnimationStarted = false;
-				}
-			},
-			{
-				threshold: [0, 0.75]
-			}
-		);
-
-		observer.observe(sectionNode);
-
-		return () => observer.disconnect();
-	});
 </script>
 
 <section class="heroBlock heroFullBleed">
@@ -114,36 +103,49 @@
 	</div>
 </section>
 
-<section class="sectionPlain sectionDividerTop keynoteSection">
-	<h2>Let the Spirit restore your faith</h2>
-	<div class="keynoteGrid">
-		{#each faithPillars as pillar (pillar.title)}
-			<article class="keynoteCard">
-				<img
-					class="keynoteImage"
-					src={pillar.imageUrl}
-					alt={`Placeholder image for ${pillar.title}`}
-				/>
-				<h3>{pillar.title}</h3>
-				<p>{pillar.body}</p>
+<section class="beliefsSection" aria-labelledby="beliefsHeading">
+	<h2 id="beliefsHeading">What we believe for you...</h2>
+	<div class="beliefsGrid">
+		{#each coreBeliefs as belief (belief.id)}
+			<article class="beliefColumn">
+				<h3>
+					{#each belief.parts as part (part.type + part.value)}
+						{#if part.type === 'em'}
+							<em>{part.value}</em>
+						{:else}
+							{part.value}
+						{/if}
+					{/each}
+				</h3>
 			</article>
 		{/each}
 	</div>
 </section>
 
-<section
-	id="encounterSection"
-	class="sectionPlain encounterSection"
-	class:encounterSectionActive={encounterAnimationStarted}
->
+<section class="beliefsSection" aria-labelledby="faithHeading">
+	<h2 id="faithHeading">Let the Spirit restore your faith</h2>
+	<div class="beliefsGrid">
+		{#each faithPillars as pillar (pillar.id)}
+			<article class="beliefColumn">
+				<h3>{pillar.title}</h3>
+				<p class="beliefBody">{pillar.body}</p>
+			</article>
+		{/each}
+	</div>
+</section>
+
+<section id="encounterSection" class="sectionPlain sectionDividerTop keynoteSection">
 	<h2>Join an encounter</h2>
-	<p>Space for you to sense, feel, and receive the Lord's soul-deep refreshing.</p>
-	<div class="flowGrid">
-		{#each encounterPaths as item (item.title)}
-			<article class="featureItem">
+	<p class="keynoteIntro">
+		Space for you to sense, feel, and receive the Lord's soul-deep refreshing.
+	</p>
+	<div class="keynoteGrid">
+		{#each encounterPaths as item (item.id)}
+			<article class="keynoteCard">
+				<img class="keynoteImage" src={item.imageUrl} alt={`Placeholder image for ${item.title}`} />
 				<h3>{item.title}</h3>
 				<p>{item.description}</p>
-				<a href={resolve(item.path)}>Learn more</a>
+				<a href={resolve(item.path)} class="learnMoreButton">Learn more</a>
 			</article>
 		{/each}
 	</div>
