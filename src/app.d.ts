@@ -1,4 +1,4 @@
-import type { User, Session } from 'better-auth/minimal';
+import type { SanityLocals } from '@sanity/sveltekit';
 
 // See https://svelte.dev/docs/kit/types#app.d.ts
 // for information about these interfaces
@@ -11,10 +11,8 @@ declare global {
 			cf?: IncomingRequestCfProperties;
 		}
 
-		interface Locals {
-			user?: User;
-			session?: Session;
-		}
+		// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+		interface Locals extends SanityLocals {}
 
 		// interface Error {}
 		// interface PageData {}

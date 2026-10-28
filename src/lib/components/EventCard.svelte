@@ -1,23 +1,25 @@
 <script lang="ts">
 	import { resolve } from '$app/paths';
-	import type { PageData } from '$routes/(site)/events/$types';
+	import { formatEventWhen } from '$lib/sanity/format';
+	import type { EventSummary } from '$lib/sanity/types';
+	import SanityImage from './SanityImage.svelte';
 
-	type EventItem = PageData['events'][number];
-
-	let { event }: { event: EventItem } = $props();
-
-	const formatDate = (value: Date | string) =>
-		new Intl.DateTimeFormat('en-US', {
-			dateStyle: 'medium',
-			timeStyle: 'short'
-		}).format(new Date(value));
+	let { event }: { event: EventSummary } = $props();
 </script>
 
 <article class="eventItem eventCard">
-	<h2>
-		<a href={resolve(`/events/${event.slug}`)}>{event.title}</a>
-	</h2>
-	<p>{event.location}</p>
-	<p>{formatDate(event.startAt)}</p>
+	{#if event.image}
+		<SanityImage
+			class="eventImage"
+			image={event.image}
+			alt={event.title}
+			width={800}
+			height={500}
+		/>
+	{/if}
+	<h3><a href={resolve(`/events/${event.slug}`)}>{event.title}</a></h3>
+	{#if event.location}<p>{event.location}</p>{/if}
+	<p>{formatEventWhen(event.startAt, event.endAt)}</p>
+	{#if event.summary}<p>{event.summary}</p>{/if}
 	<a href={resolve(`/events/${event.slug}`)}>View event</a>
 </article>

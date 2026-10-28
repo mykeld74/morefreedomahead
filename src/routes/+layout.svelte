@@ -1,9 +1,13 @@
 <script lang="ts">
+	import { PreviewMode, QueryLoader, VisualEditing } from '@sanity/sveltekit';
 	import favicon from '$lib/assets/favicon.svg';
-	import '$lib/css/reset.css';
-	import '$lib/css/styles.css';
+	import { client } from '$lib/sanity/client';
+	import type { LayoutProps } from './$types';
 
-	let { children } = $props();
+	let { children, data }: LayoutProps = $props();
+
+	// svelte-ignore state_referenced_locally
+	const { previewEnabled } = data;
 </script>
 
 <svelte:head>
@@ -11,4 +15,10 @@
 	<link rel="stylesheet" href="https://use.typekit.net/dws8ord.css" />
 </svelte:head>
 
-{@render children()}
+<PreviewMode enabled={previewEnabled}>
+	<VisualEditing enabled={previewEnabled}>
+		<QueryLoader enabled={previewEnabled} {client}>
+			{@render children()}
+		</QueryLoader>
+	</VisualEditing>
+</PreviewMode>

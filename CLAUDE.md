@@ -2,7 +2,8 @@
 
 - **Language**: TypeScript
 - **Package Manager**: pnpm
-- **Add-ons**: prettier, eslint, vitest, sveltekit-adapter, drizzle, better-auth, mcp
+- **Add-ons**: prettier, eslint, vitest, sveltekit-adapter (Cloudflare), mcp
+- **CMS**: Sanity (project `opdzk1nw`, dataset `production`), Studio embedded at `/studio`; all site content lives in Sanity (no database)
 
 ---
 

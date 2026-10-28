@@ -34,7 +34,7 @@
 	--bgColor: #f1eee6;
 	--surfaceColor: #ffffff;
 	--textColor: #000000;
-	--mutedTextColor: #6d7c60;
+	--mutedTextColor: #6d7d60;
 	--primaryColor: #85141c;
 	--primaryStrongColor: #c48143;
 	--lineColor: #cad5d7;
@@ -862,4 +862,34 @@ td {
 		transform: translateX(24px);
 		opacity: 0;
 	}
+}
+
+/* Sanity-driven content blocks */
+.honeypot {
+	position: absolute;
+	left: -9999px;
+	width: 1px;
+	height: 1px;
+	opacity: 0;
+}
+
+.richImage {
+	max-width: 100%;
+	height: auto;
+	border-radius: var(--radiusSize);
+}
+
+.formMessage {
+	margin-top: 1rem;
+	font-weight: 600;
+}
+
+.ctaSection {
+	text-align: center;
+}
+
+.eventImage {
+	width: 100%;
+	height: auto;
+	border-radius: var(--radiusSize);
 }
