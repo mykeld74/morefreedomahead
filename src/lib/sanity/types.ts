@@ -96,6 +96,37 @@ export type DonateSectionBlock = Keyed & {
 	buttonHref?: string;
 };
 
+export type MediaTextBlock = Keyed & {
+	_type: 'mediaText';
+	image?: SanityImage;
+	imageSide?: 'left' | 'right';
+	heading?: string;
+	body?: PortableTextBlock[];
+	buttonLabel?: string;
+	buttonHref?: string;
+};
+export type ImageGalleryBlock = Keyed & {
+	_type: 'imageGallery';
+	heading?: string;
+	images?: (SanityImage & { _key: string; caption?: string })[];
+};
+export type FaqBlock = Keyed & {
+	_type: 'faq';
+	heading?: string;
+	items?: { _key: string; question: string; answer?: PortableTextBlock[] }[];
+};
+export type VideoEmbedBlock = Keyed & {
+	_type: 'videoEmbed';
+	heading?: string;
+	url?: string;
+	caption?: string;
+};
+export type PullQuoteBlock = Keyed & {
+	_type: 'pullQuote';
+	quote: string;
+	attribution?: string;
+};
+
 export type PageBlock =
 	| HeroBlock
 	| TextSectionBlock
@@ -106,7 +137,12 @@ export type PageBlock =
 	| TestimonialsBlock
 	| CallToActionBlock
 	| FormSectionBlock
-	| DonateSectionBlock;
+	| DonateSectionBlock
+	| MediaTextBlock
+	| ImageGalleryBlock
+	| FaqBlock
+	| VideoEmbedBlock
+	| PullQuoteBlock;
 
 export type PageDoc = {
 	_id: string;

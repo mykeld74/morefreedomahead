@@ -10,7 +10,12 @@ export const blockTypes = [
 	'testimonials',
 	'callToAction',
 	'formSection',
-	'donateSection'
+	'donateSection',
+	'mediaText',
+	'imageGallery',
+	'faq',
+	'videoEmbed',
+	'pullQuote'
 ] as const;
 
 export const pageBuilder = defineType({
@@ -18,5 +23,13 @@ export const pageBuilder = defineType({
 	title: 'Page sections',
 	type: 'array',
 	of: blockTypes.map((type) => defineArrayMember({ type })),
-	options: { insertMenu: { filter: true } }
+	options: {
+		insertMenu: {
+			filter: true,
+			views: [
+				{ name: 'grid', previewImageUrl: (type) => `/block-previews/${type}.png` },
+				{ name: 'list' }
+			]
+		}
+	}
 });

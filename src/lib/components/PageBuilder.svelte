@@ -3,13 +3,18 @@
 	import CallToAction from './blocks/CallToAction.svelte';
 	import CardGrid from './blocks/CardGrid.svelte';
 	import DonateSection from './blocks/DonateSection.svelte';
+	import Faq from './blocks/Faq.svelte';
 	import EventsList from './blocks/EventsList.svelte';
 	import FeatureGrid from './blocks/FeatureGrid.svelte';
 	import FormSection from './blocks/FormSection.svelte';
 	import Hero from './blocks/Hero.svelte';
+	import ImageGallery from './blocks/ImageGallery.svelte';
 	import IntroSplit from './blocks/IntroSplit.svelte';
+	import MediaText from './blocks/MediaText.svelte';
+	import PullQuote from './blocks/PullQuote.svelte';
 	import Testimonials from './blocks/Testimonials.svelte';
 	import TextSection from './blocks/TextSection.svelte';
+	import VideoEmbed from './blocks/VideoEmbed.svelte';
 
 	let {
 		sections,
@@ -39,5 +44,15 @@
 		<FormSection {block} {form} />
 	{:else if block._type === 'donateSection'}
 		<DonateSection {block} />
+	{:else if block._type === 'mediaText'}
+		<MediaText {block} />
+	{:else if block._type === 'imageGallery'}
+		<ImageGallery {block} />
+	{:else if block._type === 'faq'}
+		<Faq {block} />
+	{:else if block._type === 'videoEmbed'}
+		<VideoEmbed {block} />
+	{:else if block._type === 'pullQuote'}
+		<PullQuote {block} />
 	{/if}
 {/each}
