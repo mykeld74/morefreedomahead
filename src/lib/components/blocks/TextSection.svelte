@@ -6,7 +6,7 @@
 	let { block }: { block: TextSectionBlock } = $props();
 </script>
 
-<section class={stegaClean(block.style) === 'soft' ? 'sectionSoft' : 'sectionPlain'}>
+<section class={stegaClean(block.style) === 'soft' ? 'sectionSoft' : 'sectionPlain textSection'}>
 	{#if block.heading}<h2>{block.heading}</h2>{/if}
 	<RichText value={block.body} />
 </section>

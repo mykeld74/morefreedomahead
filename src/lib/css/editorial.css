@@ -1,0 +1,653 @@
+/*
+ * Editorial theme: airy, flat, typographic. Loaded after styles.css and
+ * overrides its card-and-gradient look. Colours still come from the :root
+ * variables in styles.css, so the palette can change in one place.
+ */
+
+:root {
+	--bandColor: color-mix(in srgb, var(--softAccentColor) 32%, var(--bgColor));
+	--inkColor: #171717;
+	--radiusSize: 0;
+	--pageGutter: max(1.2rem, calc((100vw - 1260px) / 2 + 1.2rem));
+	--sectionSpace: clamp(3rem, 7vw, 6rem);
+}
+
+body {
+	background: var(--bgColor);
+	background-attachment: scroll;
+	color: var(--inkColor);
+	font-weight: 300;
+	font-size: 1.05rem;
+}
+
+/* Type
+   ========================================================================== */
+
+h1,
+h2,
+h3 {
+	font-weight: 400;
+	letter-spacing: 0;
+	line-height: 1.12;
+}
+
+h2 {
+	font-size: clamp(1.75rem, 3.6vw, 2.6rem);
+	text-transform: uppercase;
+	color: var(--inkColor);
+	margin-bottom: 1.25rem;
+}
+
+h3 {
+	font-size: clamp(1.25rem, 2vw, 1.6rem);
+}
+
+p,
+li {
+	color: var(--inkColor);
+	line-height: 1.85;
+}
+
+p {
+	max-width: 62ch;
+}
+
+main a:not([class]) {
+	color: var(--primaryColor);
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}
+
+/* Header
+   ========================================================================== */
+
+.siteHeader {
+	background: var(--bgColor);
+	border-bottom: 0;
+	backdrop-filter: none;
+	padding-block: 0.4rem;
+}
+
+.navRow {
+	grid-template-columns: 1fr auto 1fr;
+}
+
+.siteBrand {
+	grid-column: 2;
+	grid-row: 1;
+}
+
+.siteNav {
+	grid-column: 1;
+	grid-row: 1;
+	justify-content: start;
+	justify-self: start;
+	max-width: 100%;
+	flex-wrap: wrap;
+	column-gap: 1.5rem;
+	font-size: 0.82rem;
+	letter-spacing: -0.04em;
+	text-transform: uppercase;
+	font-weight: 400;
+}
+
+.siteNav a {
+	color: var(--inkColor);
+}
+
+.siteNav a:hover {
+	color: var(--primaryColor);
+}
+
+.siteLogo {
+	width: clamp(150px, 16vw, 230px);
+}
+
+.navRow.navCompact .siteLogo {
+	width: clamp(130px, 13vw, 180px);
+}
+
+.navToggle {
+	border: 0;
+	background: transparent;
+	border-radius: 0;
+}
+
+.navToggle:hover {
+	background: transparent;
+	box-shadow: none;
+	transform: none;
+}
+
+.mobileNavSurface {
+	background: var(--bgColor);
+	border-left: 0;
+}
+
+.mobileNavList a {
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-size: 1.35rem;
+	text-transform: uppercase;
+	color: var(--inkColor);
+}
+
+.mobileNavClose {
+	border: 0;
+	border-radius: 0;
+	background: transparent;
+	color: var(--inkColor);
+}
+
+.mobileNavClose:hover {
+	background: transparent;
+	box-shadow: none;
+	transform: none;
+}
+
+/* Buttons
+   ========================================================================== */
+
+button,
+.heroCta,
+.learnMoreButton {
+	display: inline-block;
+	background: var(--primaryColor);
+	color: var(--contrastColor);
+	border: 1px solid var(--primaryColor);
+	border-radius: 999px;
+	padding: 1.05rem 1.8rem;
+	font-size: 0.82rem;
+	font-weight: 400;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	line-height: 1;
+	text-align: center;
+	box-shadow: none;
+	transition:
+		background-color 220ms ease,
+		color 220ms ease,
+		border-color 220ms ease;
+}
+
+button:hover,
+.heroCta:hover,
+.learnMoreButton:hover {
+	background: var(--inkColor);
+	border-color: var(--inkColor);
+	color: var(--contrastColor);
+	transform: none;
+	box-shadow: none;
+}
+
+button:disabled {
+	opacity: 0.6;
+	cursor: wait;
+}
+
+.learnMoreButton {
+	background: transparent;
+	color: var(--inkColor);
+	border-color: var(--inkColor);
+}
+
+/* Layout: flat sections, full-bleed colour bands
+   ========================================================================== */
+
+section {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	padding: var(--sectionSpace) 0;
+	margin-bottom: 0;
+}
+
+.siteMain {
+	padding-bottom: 0;
+}
+
+.sectionPlain {
+	padding: calc(var(--sectionSpace) * 0.6) 0;
+}
+
+.sectionSoft,
+.homeIntro {
+	background: var(--bandColor);
+	border: 0;
+	margin-inline: calc(50% - 50vw);
+	padding: var(--sectionSpace) var(--pageGutter);
+	border-bottom-left-radius: 50% 3rem;
+	border-bottom-right-radius: 50% 3rem;
+}
+
+.sectionDividerTop::before {
+	display: none;
+}
+
+.sectionDividerTop {
+	padding-top: calc(var(--sectionSpace) * 0.6);
+}
+
+/* Hero: big, light type bottom-left over the image
+   ========================================================================== */
+
+.heroBlock {
+	border-radius: 0;
+	align-items: flex-end;
+	padding: 0;
+}
+
+.heroFullBleed {
+	height: min(92vh, 900px);
+	min-height: 520px;
+	margin-bottom: 0;
+}
+
+.heroOverlay {
+	background: linear-gradient(to top, rgb(0 0 0 / 0.55), rgb(0 0 0 / 0.08) 65%);
+	opacity: 1;
+}
+
+.heroContent {
+	max-width: 900px;
+	padding: clamp(1.5rem, 5vw, 4.5rem);
+}
+
+.heroContent h1 {
+	font-size: clamp(2.3rem, 6vw, 5rem);
+	font-weight: 400;
+	line-height: 1.02;
+	text-transform: uppercase;
+	margin-bottom: 1.2rem;
+}
+
+.heroContent p {
+	font-size: clamp(1.05rem, 1.6vw, 1.3rem);
+	line-height: 1.6;
+	font-weight: 300;
+}
+
+.heroContent .heroCta {
+	margin-top: 1.4rem;
+	background: transparent;
+	color: var(--contrastColor);
+	border-color: var(--contrastColor);
+}
+
+.heroContent .heroCta:hover {
+	background: var(--contrastColor);
+	color: var(--inkColor);
+	border-color: var(--contrastColor);
+}
+
+/* Text with highlight card
+   ========================================================================== */
+
+.homeIntro {
+	grid-template-columns: 1.3fr 1fr;
+	gap: clamp(2rem, 5vw, 5rem);
+	align-items: center;
+}
+
+.introAccentCard {
+	background: var(--bgColor);
+	border: 0;
+	border-radius: 0;
+	padding: clamp(1.5rem, 3vw, 2.5rem);
+}
+
+.introAccentCard .heroCta {
+	justify-self: start;
+}
+
+/* Cards
+   ========================================================================== */
+
+.keynoteSection h2,
+.keynoteIntro {
+	text-align: center;
+	margin-inline: auto;
+	color: var(--inkColor);
+}
+
+.keynoteGrid {
+	gap: clamp(1.5rem, 3vw, 3rem);
+	margin-top: 2.5rem;
+}
+
+.keynoteCard {
+	text-align: center;
+	justify-items: center;
+}
+
+.keynoteCard h3 {
+	text-transform: uppercase;
+	font-size: 1.3rem;
+	margin-top: 0.6rem;
+}
+
+.keynoteCard p {
+	text-align: center;
+}
+
+.keynoteCard a {
+	align-self: end;
+	margin-top: 0.5rem;
+}
+
+.keynoteImage,
+.mediaTextImage,
+.galleryGrid img,
+.richImage,
+.eventImage {
+	border: 0;
+	border-radius: 0;
+}
+
+.keynoteImage {
+	aspect-ratio: 4 / 5;
+}
+
+.featureCard,
+.eventCard,
+.pillarCard,
+.testimonialCard,
+.eventItem {
+	background: transparent;
+	border: 0;
+	border-top: 1px solid var(--inkColor);
+	border-radius: 0;
+	padding: 1.2rem 0 0;
+}
+
+.eventItem:hover {
+	transform: none;
+	box-shadow: none;
+}
+
+/* Beliefs / feature grid
+   ========================================================================== */
+
+.beliefsSection h2 {
+	color: var(--inkColor);
+}
+
+.beliefColumn {
+	border-left: 1px solid var(--inkColor);
+}
+
+.beliefColumn h3 {
+	font-weight: 400;
+	letter-spacing: 0.06em;
+}
+
+.beliefBody {
+	color: var(--inkColor);
+}
+
+/* Testimonials & quotes: centred serif, no boxes
+   ========================================================================== */
+
+.testimonialGrid {
+	grid-template-columns: 1fr;
+	max-width: 52rem;
+	margin: 0 auto;
+	gap: 0;
+}
+
+.testimonialItem,
+blockquote.testimonialItem {
+	background: transparent;
+	border: 0;
+	border-radius: 0;
+	text-align: center;
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-size: clamp(1.15rem, 2vw, 1.5rem);
+	line-height: 1.6;
+	padding: 2rem 0;
+	margin: 0;
+}
+
+.testimonialItem + .testimonialItem {
+	border-top: 1px solid color-mix(in srgb, var(--inkColor) 25%, transparent);
+}
+
+.testimonialItem footer,
+.pullQuote footer {
+	margin-top: 1.1rem;
+	font-family: 'Libre Franklin', system-ui, sans-serif;
+	font-size: 0.78rem;
+	font-weight: 400;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+}
+
+.testimonialItem footer::before,
+.pullQuote footer::before {
+	content: '— ';
+}
+
+.textSection {
+	max-width: 52rem;
+	margin-inline: auto;
+}
+
+.sectionPlain:has(> .testimonialGrid) > h2,
+.sectionPlain:has(> .galleryGrid) > h2,
+.faqSection > h2 {
+	text-align: center;
+}
+
+blockquote {
+	background: transparent;
+	border-left: 0;
+	border-radius: 0;
+	padding: 0;
+	margin: 1.5rem 0;
+}
+
+.pullQuote {
+	max-width: 52rem;
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+	line-height: 1.45;
+}
+
+.pullQuote p {
+	max-width: none;
+	line-height: 1.45;
+}
+
+/* Image with text, gallery, video, FAQ
+   ========================================================================== */
+
+.mediaText {
+	gap: clamp(2rem, 5vw, 5rem);
+	align-items: center;
+}
+
+.mediaTextImage {
+	aspect-ratio: 4 / 5;
+	object-fit: cover;
+}
+
+.galleryGrid {
+	gap: clamp(0.5rem, 1.5vw, 1.25rem);
+}
+
+.galleryGrid img,
+.videoFrame {
+	border-radius: 0;
+}
+
+.faqSection {
+	max-width: 52rem;
+	margin: 0 auto;
+}
+
+.faqItem {
+	border-bottom: 1px solid color-mix(in srgb, var(--inkColor) 35%, transparent);
+	padding: 1.1rem 0;
+}
+
+.faqItem summary {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	list-style: none;
+	cursor: pointer;
+	font-weight: 400;
+	font-size: 1.05rem;
+}
+
+.faqItem summary::-webkit-details-marker {
+	display: none;
+}
+
+.faqItem summary::after {
+	content: '+';
+	font-size: 1.5rem;
+	line-height: 1;
+	font-weight: 300;
+}
+
+.faqItem[open] summary::after {
+	content: '–';
+}
+
+.faqItem[open] summary {
+	margin-bottom: 0.75rem;
+}
+
+/* Forms
+   ========================================================================== */
+
+input,
+textarea,
+select {
+	background: transparent;
+	border: 1px solid var(--primaryColor);
+	border-radius: 0;
+	padding: 0.85rem 1rem;
+	font-size: 0.9rem;
+	font-weight: 300;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+	border-color: var(--inkColor);
+	box-shadow: none;
+	background: color-mix(in srgb, var(--surfaceColor) 55%, transparent);
+}
+
+label {
+	font-size: 0.74rem;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	color: var(--inkColor);
+}
+
+label input,
+label textarea {
+	margin-top: 0.4rem;
+	text-transform: none;
+	letter-spacing: 0;
+}
+
+.formSection {
+	max-width: 40rem;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.formSection form {
+	text-align: left;
+}
+
+.formSection p {
+	margin-inline: auto;
+}
+
+.ctaSection {
+	text-align: center;
+}
+
+.ctaSection p {
+	margin-inline: auto;
+}
+
+/* Footer
+   ========================================================================== */
+
+.siteFooter {
+	background: var(--bgColor);
+	border-top: 1px solid color-mix(in srgb, var(--inkColor) 25%, transparent);
+	margin-top: var(--sectionSpace);
+	padding: 2.5rem 0;
+	text-align: center;
+}
+
+.footerTagline {
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-weight: 400;
+	font-size: 1.15rem;
+	margin-inline: auto;
+}
+
+.footerCopyright {
+	font-size: 0.78rem;
+	letter-spacing: 0.06em;
+	margin-inline: auto;
+}
+
+/* Small screens
+   ========================================================================== */
+
+@media (max-width: 780px) {
+	:root {
+		--pageGutter: 0.9rem;
+	}
+
+	.navRow {
+		grid-template-columns: minmax(0, 1fr) auto;
+	}
+
+	.siteBrand {
+		grid-column: 1;
+	}
+
+	.siteLogo {
+		width: clamp(132px, 44vw, 182px);
+	}
+
+	section {
+		padding: calc(var(--sectionSpace) * 0.7) 0;
+	}
+
+	.sectionSoft,
+	.homeIntro {
+		padding: calc(var(--sectionSpace) * 0.7) var(--pageGutter);
+	}
+
+	.heroFullBleed {
+		min-height: 480px;
+	}
+
+	.homeIntro {
+		grid-template-columns: 1fr;
+	}
+
+	.keynoteGrid {
+		grid-template-columns: 1fr;
+	}
+}
+
+/* Rhythm for rich text */
+main p + p,
+main p + ul,
+main ul + p,
+main ul + h2,
+main p + h2 {
+	margin-top: 1.1rem;
+}
