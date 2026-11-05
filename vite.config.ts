@@ -40,6 +40,8 @@ const fixWorkerCreateRequire = (): Plugin => ({
 
 export default defineConfig({
 	plugins: [prefixNodeBuiltins(), fixWorkerCreateRequire(), sveltekit()],
+	// Resolve packages like get-it to their fetch-based builds in Workers, not the Node/stream ones.
+	ssr: { resolve: { conditions: ['workerd', 'worker'] } },
 	test: {
 		expect: { requireAssertions: true },
 		projects: [
