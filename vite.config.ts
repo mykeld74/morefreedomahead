@@ -20,8 +20,26 @@ const prefixNodeBuiltins = (): Plugin => ({
 	}
 });
 
+// Rolldown's CJS interop helper runs `createRequire(import.meta.url)` at module load.
+// `import.meta.url` is undefined in Workers, which crashes the Function on publish.
+const fixWorkerCreateRequire = (): Plugin => ({
+	name: 'fix-worker-create-require',
+	apply: 'build',
+	renderChunk(code) {
+		if (this.environment?.name !== 'ssr') return null;
+		if (!code.includes('createRequire(import.meta.url)')) return null;
+		return {
+			code: code.replaceAll(
+				'createRequire(import.meta.url)',
+				"createRequire('file:///worker.js')"
+			),
+			map: null
+		};
+	}
+});
+
 export default defineConfig({
-	plugins: [prefixNodeBuiltins(), sveltekit()],
+	plugins: [prefixNodeBuiltins(), fixWorkerCreateRequire(), sveltekit()],
 	test: {
 		expect: { requireAssertions: true },
 		projects: [
