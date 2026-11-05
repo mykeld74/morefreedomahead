@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { CalendarIcon } from '@sanity/icons/Calendar';
+import { eyebrowField } from '../objects/eyebrow';
 
 export const eventsList = defineType({
 	name: 'eventsList',
@@ -7,6 +8,7 @@ export const eventsList = defineType({
 	type: 'object',
 	icon: CalendarIcon,
 	fields: [
+		eyebrowField(),
 		defineField({ name: 'heading', type: 'string', initialValue: 'Upcoming Events' }),
 		defineField({
 			name: 'maxItems',
@@ -20,6 +22,13 @@ export const eventsList = defineType({
 			title: 'Message when there are no events',
 			type: 'string',
 			initialValue: 'Events are coming soon. Join the newsletter and be first to hear.'
+		}),
+		defineField({
+			name: 'curvedEdge',
+			title: 'Curved bottom edge',
+			description: 'Gives a colored background a softly curved bottom edge.',
+			type: 'boolean',
+			initialValue: false
 		})
 	],
 	preview: {

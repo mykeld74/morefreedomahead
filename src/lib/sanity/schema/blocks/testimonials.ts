@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { CommentIcon } from '@sanity/icons/Comment';
+import { eyebrowField } from '../objects/eyebrow';
+import { bandFields } from '../objects/band';
 
 export const testimonials = defineType({
 	name: 'testimonials',
@@ -7,6 +9,7 @@ export const testimonials = defineType({
 	type: 'object',
 	icon: CommentIcon,
 	fields: [
+		eyebrowField(),
 		defineField({ name: 'heading', type: 'string' }),
 		defineField({
 			name: 'items',
@@ -27,7 +30,8 @@ export const testimonials = defineType({
 					preview: { select: { title: 'author', subtitle: 'quote' } }
 				})
 			]
-		})
+		}),
+		...bandFields()
 	],
 	preview: {
 		select: { title: 'heading' },

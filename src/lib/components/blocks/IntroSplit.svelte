@@ -6,8 +6,9 @@
 	let { block }: { block: IntroSplitBlock } = $props();
 </script>
 
-<section class="homeIntro sectionSoft">
+<section class="homeIntro sectionSoft" class:bandCurved={block.curvedEdge}>
 	<div>
+		{#if block.eyebrow}<p class="eyebrow">{block.eyebrow}</p>{/if}
 		{#if block.heading}<h2>{block.heading}</h2>{/if}
 		<RichText value={block.body} />
 	</div>

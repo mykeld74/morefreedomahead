@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { SplitHorizontalIcon } from '@sanity/icons/SplitHorizontal';
 import { hrefField } from '../objects/linkFields';
+import { eyebrowField } from '../objects/eyebrow';
 
 export const mediaText = defineType({
 	name: 'mediaText',
@@ -8,6 +9,7 @@ export const mediaText = defineType({
 	type: 'object',
 	icon: SplitHorizontalIcon,
 	fields: [
+		eyebrowField(),
 		defineField({
 			name: 'image',
 			type: 'image',

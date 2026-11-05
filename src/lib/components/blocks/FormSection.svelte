@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { bandClass } from '$lib/sanity/band';
 	import { enhance } from '$app/forms';
 	import { stegaClean } from '@sanity/sveltekit';
 	import type { FormSectionBlock } from '$lib/sanity/types';
@@ -7,12 +8,14 @@
 
 	let { block, form }: { block: FormSectionBlock; form?: FormResult } = $props();
 
+	const band = $derived(bandClass(block.background, block.curvedEdge));
+
 	const formType = $derived(stegaClean(block.formType));
 	const result = $derived(form?.key === block._key ? form : undefined);
 	let sending = $state(false);
 </script>
 
-<section class="sectionPlain formSection">
+<section class="sectionPlain formSection {band}">
 	{#if block.heading}<h2>{block.heading}</h2>{/if}
 	{#if block.intro}<p>{block.intro}</p>{/if}
 

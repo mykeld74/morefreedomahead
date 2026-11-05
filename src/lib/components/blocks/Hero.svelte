@@ -19,6 +19,7 @@
 	{/if}
 	<div class="heroOverlay"></div>
 	<div class="heroContent">
+		{#if block.eyebrow}<p class="eyebrow">{block.eyebrow}</p>{/if}
 		<h1>{block.headline}</h1>
 		{#each block.lines ?? [] as line, i (i)}
 			<p>{line}</p>

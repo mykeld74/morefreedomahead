@@ -14,6 +14,7 @@
 >
 	<SanityImage class="mediaTextImage" image={block.image} width={900} />
 	<div>
+		{#if block.eyebrow}<p class="eyebrow">{block.eyebrow}</p>{/if}
 		{#if block.heading}<h2>{block.heading}</h2>{/if}
 		<RichText value={block.body} />
 		{#if block.buttonLabel}

@@ -1,6 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { ThLargeIcon } from '@sanity/icons/ThLarge';
 import { hrefField } from '../objects/linkFields';
+import { eyebrowField } from '../objects/eyebrow';
 
 export const cardGrid = defineType({
 	name: 'cardGrid',
@@ -8,8 +9,22 @@ export const cardGrid = defineType({
 	type: 'object',
 	icon: ThLargeIcon,
 	fields: [
+		eyebrowField(),
 		defineField({ name: 'heading', type: 'string' }),
 		defineField({ name: 'intro', type: 'text', rows: 2 }),
+		defineField({
+			name: 'layout',
+			title: 'Look',
+			type: 'string',
+			options: {
+				list: [
+					{ title: 'Cards (picture, text, link)', value: 'cards' },
+					{ title: 'Photo tiles (name on the photo)', value: 'tiles' }
+				],
+				layout: 'radio'
+			},
+			initialValue: 'cards'
+		}),
 		defineField({
 			name: 'cards',
 			type: 'array',

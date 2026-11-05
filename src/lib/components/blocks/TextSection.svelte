@@ -4,9 +4,21 @@
 	import type { TextSectionBlock } from '$lib/sanity/types';
 
 	let { block }: { block: TextSectionBlock } = $props();
+
+	const looks: Record<string, string> = {
+		plain: 'sectionPlain',
+		soft: 'sectionSoft',
+		statement: 'sectionPlain textStatement',
+		dark: 'textDark',
+		charcoal: 'textDark textCharcoal',
+		split: 'sectionPlain textSplit'
+	};
 </script>
 
-<section class={stegaClean(block.style) === 'soft' ? 'sectionSoft' : 'sectionPlain textSection'}>
+<section
+	class={`textSection ${looks[stegaClean(block.style) ?? 'plain'] ?? looks.plain}${block.curvedEdge ? ' bandCurved' : ''}`}
+>
+	{#if block.eyebrow}<p class="eyebrow">{block.eyebrow}</p>{/if}
 	{#if block.heading}<h2>{block.heading}</h2>{/if}
-	<RichText value={block.body} />
+	<div class="textBody"><RichText value={block.body} /></div>
 </section>

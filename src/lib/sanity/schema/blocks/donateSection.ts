@@ -19,7 +19,14 @@ export const donateSection = defineType({
 		{
 			...hrefField('buttonHref', 'Donation link'),
 			description: 'Paste your Stripe Payment Link (or other donation page) here.'
-		}
+		},
+		defineField({
+			name: 'curvedEdge',
+			title: 'Curved bottom edge',
+			description: 'Gives a colored background a softly curved bottom edge.',
+			type: 'boolean',
+			initialValue: false
+		})
 	],
 	preview: {
 		select: { title: 'heading' },

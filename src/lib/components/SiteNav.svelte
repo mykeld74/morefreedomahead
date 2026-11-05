@@ -5,6 +5,9 @@
 
 	let { links = [] }: { links?: { _key: string; label: string; href: string }[] } = $props();
 
+	/** Half the links sit on each side of the logo. */
+	const splitAt = $derived(Math.ceil(links.length / 2));
+
 	const isExternal = (href: string) => /^(https?:|mailto:|tel:)/.test(href);
 
 	let menuOpen = $state(false);
@@ -77,8 +80,13 @@
 			<span></span>
 			<span></span>
 		</button>
-		<nav id="siteNavigation" class="siteNav siteNavDesktop">
-			{#each links as link (link._key)}
+		<nav id="siteNavigation" class="siteNav siteNavDesktop siteNavLeft" aria-label="Main">
+			{#each links.slice(0, splitAt) as link (link._key)}
+				<a href={isExternal(link.href) ? link.href : resolve(link.href as '/')}>{link.label}</a>
+			{/each}
+		</nav>
+		<nav class="siteNav siteNavDesktop siteNavRight" aria-label="Main, continued">
+			{#each links.slice(splitAt) as link (link._key)}
 				<a href={isExternal(link.href) ? link.href : resolve(link.href as '/')}>{link.label}</a>
 			{/each}
 		</nav>

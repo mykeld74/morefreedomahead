@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { ImagesIcon } from '@sanity/icons/Images';
+import { eyebrowField } from '../objects/eyebrow';
 
 export const imageGallery = defineType({
 	name: 'imageGallery',
@@ -7,6 +8,7 @@ export const imageGallery = defineType({
 	type: 'object',
 	icon: ImagesIcon,
 	fields: [
+		eyebrowField(),
 		defineField({ name: 'heading', type: 'string' }),
 		defineField({
 			name: 'images',

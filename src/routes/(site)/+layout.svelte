@@ -3,6 +3,7 @@
 	import '$lib/css/reset.css';
 	import '$lib/css/styles.css';
 	import '$lib/css/editorial.css';
+	import '$lib/css/motion.css';
 	import SiteNav from '$lib/components/SiteNav.svelte';
 	import type { SiteSettings } from '$lib/sanity/types';
 

@@ -6,9 +6,9 @@
 	let { block }: { block: DonateSectionBlock } = $props();
 </script>
 
-<section class="sectionSoft ctaSection">
+<section class="textDark donateBand" class:bandCurved={block.curvedEdge}>
 	{#if block.heading}<h2>{block.heading}</h2>{/if}
-	<RichText value={block.body} />
+	<div class="textBody"><RichText value={block.body} /></div>
 	{#if block.buttonHref}
 		<SmartLink class="heroCta" href={block.buttonHref}
 			>{block.buttonLabel || 'Give securely'}</SmartLink

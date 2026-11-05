@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { HelpCircleIcon } from '@sanity/icons/HelpCircle';
+import { eyebrowField } from '../objects/eyebrow';
+import { bandFields } from '../objects/band';
 
 export const faq = defineType({
 	name: 'faq',
@@ -7,6 +9,7 @@ export const faq = defineType({
 	type: 'object',
 	icon: HelpCircleIcon,
 	fields: [
+		eyebrowField(),
 		defineField({ name: 'heading', type: 'string', initialValue: 'Frequently asked questions' }),
 		defineField({
 			name: 'items',
@@ -27,7 +30,8 @@ export const faq = defineType({
 					preview: { select: { title: 'question' } }
 				})
 			]
-		})
+		}),
+		...bandFields()
 	],
 	preview: {
 		select: { title: 'heading' },

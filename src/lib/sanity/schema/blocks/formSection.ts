@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { EnvelopeIcon } from '@sanity/icons/Envelope';
+import { bandFields } from '../objects/band';
 
 export const formSection = defineType({
 	name: 'formSection',
@@ -28,7 +29,8 @@ export const formSection = defineType({
 			title: 'Message after sending',
 			type: 'string',
 			initialValue: 'Thank you! We will be in touch soon.'
-		})
+		}),
+		...bandFields()
 	],
 	preview: {
 		select: { title: 'heading', formType: 'formType' },

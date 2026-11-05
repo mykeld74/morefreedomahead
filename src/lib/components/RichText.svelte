@@ -3,10 +3,14 @@
 	import type { PortableTextBlock } from '@portabletext/types';
 	import RichTextImage from './RichTextImage.svelte';
 	import RichTextLink from './RichTextLink.svelte';
+	import RichTextScript from './RichTextScript.svelte';
 
 	let { value }: { value?: PortableTextBlock[] } = $props();
 
-	const components = { marks: { link: RichTextLink }, types: { image: RichTextImage } };
+	const components = {
+		marks: { link: RichTextLink, script: RichTextScript },
+		types: { image: RichTextImage }
+	};
 </script>
 
 {#if value?.length}

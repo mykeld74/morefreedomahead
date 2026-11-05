@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { LaunchIcon } from '@sanity/icons/Launch';
 import { hrefField } from '../objects/linkFields';
+import { bandFields } from '../objects/band';
 
 export const callToAction = defineType({
 	name: 'callToAction',
@@ -15,7 +16,8 @@ export const callToAction = defineType({
 			type: 'string',
 			validation: (rule) => rule.required()
 		}),
-		hrefField('href', 'Button link')
+		hrefField('href', 'Button link'),
+		...bandFields()
 	],
 	preview: {
 		select: { title: 'label', subtitle: 'text' },

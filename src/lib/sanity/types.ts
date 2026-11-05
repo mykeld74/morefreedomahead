@@ -24,6 +24,7 @@ export type EventSummary = {
 type Keyed = { _key: string };
 
 export type HeroBlock = Keyed & {
+	eyebrow?: string;
 	_type: 'hero';
 	headline: string;
 	lines?: string[];
@@ -33,12 +34,16 @@ export type HeroBlock = Keyed & {
 	image?: SanityImage;
 };
 export type TextSectionBlock = Keyed & {
+	eyebrow?: string;
+	curvedEdge?: boolean;
 	_type: 'textSection';
 	heading?: string;
 	body?: PortableTextBlock[];
-	style?: 'plain' | 'soft';
+	style?: 'plain' | 'soft' | 'statement' | 'dark' | 'charcoal' | 'split';
 };
 export type IntroSplitBlock = Keyed & {
+	eyebrow?: string;
+	curvedEdge?: boolean;
 	_type: 'introSplit';
 	heading?: string;
 	body?: PortableTextBlock[];
@@ -47,12 +52,17 @@ export type IntroSplitBlock = Keyed & {
 	cardButtonHref?: string;
 };
 export type FeatureGridBlock = Keyed & {
+	background?: 'none' | 'soft' | 'dark' | 'charcoal';
+	curvedEdge?: boolean;
+	eyebrow?: string;
 	_type: 'featureGrid';
 	heading?: string;
 	items?: (Keyed & { title: string; body?: string })[];
 };
 export type CardGridBlock = Keyed & {
+	eyebrow?: string;
 	_type: 'cardGrid';
+	layout?: 'cards' | 'tiles';
 	heading?: string;
 	intro?: string;
 	cards?: (Keyed & {
@@ -64,6 +74,8 @@ export type CardGridBlock = Keyed & {
 	})[];
 };
 export type EventsListBlock = Keyed & {
+	eyebrow?: string;
+	curvedEdge?: boolean;
 	_type: 'eventsList';
 	heading?: string;
 	maxItems?: number;
@@ -71,17 +83,24 @@ export type EventsListBlock = Keyed & {
 	events?: EventSummary[];
 };
 export type TestimonialsBlock = Keyed & {
+	background?: 'none' | 'soft' | 'dark' | 'charcoal';
+	curvedEdge?: boolean;
+	eyebrow?: string;
 	_type: 'testimonials';
 	heading?: string;
 	items?: (Keyed & { quote: string; author?: string })[];
 };
 export type CallToActionBlock = Keyed & {
+	background?: 'none' | 'soft' | 'dark' | 'charcoal';
+	curvedEdge?: boolean;
 	_type: 'callToAction';
 	text?: string;
 	label: string;
 	href?: string;
 };
 export type FormSectionBlock = Keyed & {
+	background?: 'none' | 'soft' | 'dark' | 'charcoal';
+	curvedEdge?: boolean;
 	_type: 'formSection';
 	formType: 'contact' | 'speaking' | 'newsletter';
 	heading?: string;
@@ -89,6 +108,7 @@ export type FormSectionBlock = Keyed & {
 	successMessage?: string;
 };
 export type DonateSectionBlock = Keyed & {
+	curvedEdge?: boolean;
 	_type: 'donateSection';
 	heading?: string;
 	body?: PortableTextBlock[];
@@ -97,6 +117,7 @@ export type DonateSectionBlock = Keyed & {
 };
 
 export type MediaTextBlock = Keyed & {
+	eyebrow?: string;
 	_type: 'mediaText';
 	image?: SanityImage;
 	imageSide?: 'left' | 'right';
@@ -106,11 +127,15 @@ export type MediaTextBlock = Keyed & {
 	buttonHref?: string;
 };
 export type ImageGalleryBlock = Keyed & {
+	eyebrow?: string;
 	_type: 'imageGallery';
 	heading?: string;
 	images?: (SanityImage & { _key: string; caption?: string })[];
 };
 export type FaqBlock = Keyed & {
+	background?: 'none' | 'soft' | 'dark' | 'charcoal';
+	curvedEdge?: boolean;
+	eyebrow?: string;
 	_type: 'faq';
 	heading?: string;
 	items?: { _key: string; question: string; answer?: PortableTextBlock[] }[];
@@ -122,6 +147,8 @@ export type VideoEmbedBlock = Keyed & {
 	caption?: string;
 };
 export type PullQuoteBlock = Keyed & {
+	background?: 'none' | 'soft' | 'dark' | 'charcoal';
+	curvedEdge?: boolean;
 	_type: 'pullQuote';
 	quote: string;
 	attribution?: string;

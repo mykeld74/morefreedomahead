@@ -7,7 +7,8 @@
 	const events = $derived((block.events ?? []).slice(0, block.maxItems ?? 24));
 </script>
 
-<section class="sectionSoft">
+<section class="sectionSoft" class:bandCurved={block.curvedEdge}>
+	{#if block.eyebrow}<p class="eyebrow">{block.eyebrow}</p>{/if}
 	{#if block.heading}<h2>{block.heading}</h2>{/if}
 	{#if events.length === 0}
 		<p>{block.emptyText}</p>

@@ -78,17 +78,27 @@ main a:not([class]) {
 }
 
 .siteNav {
-	grid-column: 1;
 	grid-row: 1;
-	justify-content: start;
-	justify-self: start;
 	max-width: 100%;
-	flex-wrap: wrap;
-	column-gap: 1.5rem;
+	column-gap: clamp(1.25rem, 2.4vw, 2.25rem);
 	font-size: 0.82rem;
 	letter-spacing: -0.04em;
 	text-transform: uppercase;
 	font-weight: 400;
+}
+
+.siteNavLeft {
+	grid-column: 1;
+	justify-content: end;
+	justify-self: end;
+	padding-right: clamp(1.5rem, 4vw, 4rem);
+}
+
+.siteNavRight {
+	grid-column: 3;
+	justify-content: start;
+	justify-self: start;
+	padding-left: clamp(1.5rem, 4vw, 4rem);
 }
 
 .siteNav a {
@@ -216,8 +226,6 @@ section {
 	border: 0;
 	margin-inline: calc(50% - 50vw);
 	padding: var(--sectionSpace) var(--pageGutter);
-	border-bottom-left-radius: 50% 3rem;
-	border-bottom-right-radius: 50% 3rem;
 }
 
 .sectionDividerTop::before {
@@ -611,6 +619,7 @@ label textarea {
 
 	.navRow {
 		grid-template-columns: minmax(0, 1fr) auto;
+		padding-inline: 0.9rem;
 	}
 
 	.siteBrand {
@@ -650,4 +659,556 @@ main ul + p,
 main ul + h2,
 main p + h2 {
 	margin-top: 1.1rem;
+}
+
+/* Text section looks
+   ========================================================================== */
+
+.sectionSoft.textSection > *,
+.textDark > * {
+	max-width: 52rem;
+	margin-inline: auto;
+}
+
+.textSection p {
+	max-width: none;
+}
+
+.textStatement {
+	max-width: 60rem;
+	text-align: center;
+}
+
+.textStatement h2 {
+	font-size: clamp(2.2rem, 5vw, 4rem);
+}
+
+.textStatement p {
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-size: clamp(1.2rem, 2.2vw, 1.7rem);
+	line-height: 1.6;
+	font-weight: 400;
+	margin-inline: auto;
+}
+
+.textDark {
+	background: var(--primaryColor);
+	margin-inline: calc(50% - 50vw);
+	padding: var(--sectionSpace) var(--pageGutter);
+}
+
+.textDark h2,
+.textDark p,
+.textDark li {
+	color: var(--contrastColor);
+}
+
+.textDark li::marker {
+	color: var(--softAccentColor);
+}
+
+.textDark h2 {
+	text-align: center;
+}
+
+.textSplit {
+	max-width: 1100px;
+	display: grid;
+	grid-template-columns: 1fr 1.5fr;
+	gap: clamp(1.5rem, 5vw, 5rem);
+	align-items: start;
+	border-top: 1px solid var(--inkColor);
+}
+
+.textSplit h2 {
+	margin: 0;
+	position: sticky;
+	top: 6rem;
+}
+
+.textSplit ul {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 1.2rem;
+}
+
+.textSplit li {
+	padding: 0.9rem 0;
+	margin: 0;
+	border-bottom: 1px solid color-mix(in srgb, var(--inkColor) 25%, transparent);
+}
+
+@media (max-width: 780px) {
+	.textSplit {
+		grid-template-columns: 1fr;
+	}
+
+	.textSplit h2 {
+		position: static;
+	}
+
+	.textDark {
+		padding: calc(var(--sectionSpace) * 0.7) var(--pageGutter);
+	}
+}
+
+.textSection.sectionSoft,
+.textDark {
+	max-width: none;
+	margin-inline: calc(50% - 50vw);
+}
+
+/* Statement grid (feature grid with short sentences) */
+.beliefColumn h3 {
+	font-size: clamp(1.1rem, 1.9vw, 1.5rem);
+	line-height: 1.4;
+	text-transform: none;
+	letter-spacing: 0;
+	max-width: 22ch;
+}
+
+@media (min-width: 781px) {
+	.beliefsGrid {
+		grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+	}
+}
+
+/* Split look: arrow rows and a closing question */
+.textSplit li {
+	display: grid;
+	grid-template-columns: 2.4rem 1fr;
+	align-items: baseline;
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+	line-height: 1.45;
+	padding: 1.1rem 0;
+}
+
+.textSplit li::before {
+	content: '→';
+	font-family: 'Libre Franklin', system-ui, sans-serif;
+	font-size: 1.15rem;
+	color: var(--primaryColor);
+}
+
+.textSplit blockquote {
+	margin: 1.75rem 0 0;
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-style: italic;
+	font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+	line-height: 1.5;
+	color: var(--primaryColor);
+}
+
+/* Dark look: two big statements, then a grid of cards */
+.textDark > * {
+	max-width: 62rem;
+}
+
+.textDark blockquote {
+	max-width: 46rem;
+	margin: 2.25rem auto;
+	text-align: center;
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-size: clamp(1.3rem, 2.6vw, 2rem);
+	line-height: 1.45;
+	color: var(--contrastColor);
+}
+
+.textDark blockquote + blockquote {
+	margin-top: 0;
+	padding-top: 2.25rem;
+	border-top: 1px solid color-mix(in srgb, var(--contrastColor) 35%, transparent);
+}
+
+.textDark .textBody > p {
+	text-align: center;
+	margin-inline: auto;
+	max-width: 44rem;
+}
+
+.textDark ul {
+	list-style: none;
+	padding: 0;
+	margin: 2rem 0 0;
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 1rem;
+}
+
+.textDark li {
+	margin: 0;
+	padding: 1.4rem 1.5rem;
+	border: 1px solid color-mix(in srgb, var(--contrastColor) 45%, transparent);
+	line-height: 1.6;
+}
+
+@media (max-width: 780px) {
+	.textDark ul {
+		grid-template-columns: 1fr;
+	}
+}
+
+.beliefsSection h2 {
+	font-size: clamp(2rem, 4.2vw, 3.2rem);
+}
+
+/* Optional curved bottom edge on colour bands (a checkbox in Studio) */
+.bandCurved {
+	border-bottom-left-radius: 50% 3rem;
+	border-bottom-right-radius: 50% 3rem;
+}
+
+/*
+ * A curved band sits on top of the next colored band, which extends up
+ * behind it, so the curve's corners show that band instead of the page.
+ */
+.bandCurved {
+	position: relative;
+	z-index: 1;
+}
+
+.bandCurved + :is(.sectionSoft, .textDark, .homeIntro) {
+	margin-top: -3rem;
+	border-top: 3rem solid transparent;
+}
+
+/* Page titles and inner pages
+   ========================================================================== */
+
+.pageTitle {
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: 400;
+	font-size: clamp(2.2rem, 6vw, 4.5rem);
+	line-height: 1.05;
+	max-width: 22ch;
+	margin: 0 auto;
+	padding: clamp(2.5rem, 6vw, 5rem) 0 clamp(0.5rem, 2vw, 1.5rem);
+}
+
+.pageTitle::after {
+	content: '';
+	display: block;
+	width: 3.5rem;
+	height: 1px;
+	margin: clamp(1.25rem, 3vw, 2rem) auto 0;
+	background: var(--primaryColor);
+}
+
+.donateBand {
+	text-align: center;
+	margin-top: 1rem;
+}
+
+.donateBand ul {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	margin-top: 2rem;
+	margin-bottom: 2rem;
+}
+
+.donateBand li {
+	font-family: 'Libre Baskerville', Georgia, serif;
+	font-size: 1.4rem;
+	text-transform: uppercase;
+	padding: 1.75rem 1rem;
+}
+
+.donateBand .heroCta {
+	background: var(--contrastColor);
+	border-color: var(--contrastColor);
+	color: var(--primaryColor);
+}
+
+.donateBand .heroCta:hover {
+	background: transparent;
+	color: var(--contrastColor);
+}
+
+/* Events */
+.eventCard {
+	display: grid;
+	align-content: start;
+	gap: 0.6rem;
+	text-align: center;
+	justify-items: center;
+	border-top: 0;
+	padding: 0;
+}
+
+.eventCard .eventImage {
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+}
+
+.eventDate {
+	font-size: 0.78rem;
+	letter-spacing: 0.14em;
+	text-transform: uppercase;
+	color: var(--primaryColor);
+	margin-top: 0.4rem;
+}
+
+.eventCard h3 {
+	text-transform: uppercase;
+	margin: 0;
+}
+
+.eventCard h3 a {
+	color: var(--inkColor);
+}
+
+.eventPlace {
+	font-style: italic;
+}
+
+.eventCard p {
+	margin: 0;
+	max-width: 36ch;
+}
+
+.eventCard .learnMoreButton {
+	margin-top: 0.6rem;
+}
+
+@media (max-width: 780px) {
+	.donateBand ul {
+		grid-template-columns: 1fr;
+	}
+}
+
+.sectionSoft:has(> .flowGrid) > h2,
+.sectionPlain:has(> .flowGrid) > h2 {
+	text-align: center;
+}
+
+.flowGrid {
+	grid-template-columns: repeat(auto-fit, minmax(260px, 360px));
+	justify-content: center;
+	gap: clamp(1.5rem, 3vw, 3rem);
+}
+
+/* Eyebrow labels, text links, photo tiles, framed cards, script accents
+   ========================================================================== */
+
+:root {
+	--charcoalColor: #3c3a39;
+}
+
+.eyebrow {
+	margin: 0 0 0.9rem;
+	max-width: none;
+	font-size: 0.74rem;
+	font-weight: 500;
+	letter-spacing: 0.28em;
+	line-height: 1.4;
+	text-transform: uppercase;
+	color: var(--primaryColor);
+}
+
+.eyebrow + h2,
+.eyebrow + h1 {
+	margin-top: 0;
+}
+
+.keynoteSection .eyebrow,
+.beliefsSection .eyebrow,
+.textStatement .eyebrow,
+.textDark .eyebrow,
+.faqSection .eyebrow,
+.sectionPlain:has(> .testimonialGrid) > .eyebrow,
+.sectionPlain:has(> .galleryGrid) > .eyebrow,
+.sectionSoft:has(> .flowGrid) > .eyebrow {
+	text-align: center;
+	margin-inline: auto;
+}
+
+.textDark .eyebrow {
+	color: var(--softAccentColor);
+}
+
+.heroContent .eyebrow {
+	color: var(--contrastColor);
+	font-size: 0.78rem;
+	margin-bottom: 1.1rem;
+}
+
+.textCharcoal {
+	background: var(--charcoalColor);
+}
+
+.textCharcoal li::marker {
+	color: var(--primaryStrongColor);
+}
+
+/* Quiet text links with an arrow instead of outlined pills */
+.learnMoreButton {
+	background: transparent;
+	border: 0;
+	border-bottom: 1px solid currentcolor;
+	border-radius: 0;
+	padding: 0.35rem 0;
+	letter-spacing: 0.16em;
+}
+
+.learnMoreButton::after {
+	content: '→';
+	display: inline-block;
+	margin-left: 0.7rem;
+	transition: transform 220ms ease;
+}
+
+.learnMoreButton:hover {
+	background: transparent;
+	color: var(--primaryColor);
+	border-color: var(--primaryColor);
+}
+
+.learnMoreButton:hover::after {
+	transform: translateX(5px);
+}
+
+/* Photo tiles with the name on a label */
+.tileGrid {
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 0.75rem;
+}
+
+.tile {
+	position: relative;
+	display: block;
+	aspect-ratio: 4 / 3;
+	overflow: hidden;
+	background: var(--bandColor);
+}
+
+.tile img {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	transition: transform 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.tile:hover img {
+	transform: scale(1.06);
+}
+
+.tileLabel {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	translate: -50% -50%;
+	padding: 0.8rem 1.5rem;
+	background: color-mix(in srgb, var(--bgColor) 94%, transparent);
+	color: var(--inkColor);
+	font-size: 0.8rem;
+	font-weight: 500;
+	letter-spacing: 0.18em;
+	text-transform: uppercase;
+	white-space: nowrap;
+	transition:
+		background-color 220ms ease,
+		color 220ms ease;
+}
+
+.tile:hover .tileLabel {
+	background: var(--primaryColor);
+	color: var(--contrastColor);
+}
+
+/* Event cards sit in a soft frame */
+.eventCard {
+	background: var(--surfaceColor);
+	padding: 0 0 1.75rem;
+	box-shadow: 0 14px 34px rgb(0 0 0 / 0.08);
+}
+
+.eventCard > :not(.eventImage) {
+	padding-inline: 1.4rem;
+}
+
+.eventCard .eventImage {
+	width: 100%;
+}
+
+/* Handwritten accent */
+.emphasisText {
+	font-size: 1.3em;
+	font-weight: 400;
+	letter-spacing: 0;
+	text-transform: none;
+	line-height: 1;
+	color: var(--primaryColor);
+}
+
+.textDark .emphasisText {
+	color: var(--softAccentColor);
+}
+
+@media (max-width: 780px) {
+	.tileGrid {
+		grid-template-columns: 1fr;
+	}
+}
+
+.eventCard h3 a {
+	text-decoration: none;
+}
+
+/* Colored backgrounds on any block (the "Background color" field)
+   ========================================================================== */
+
+:is(.formSection, .faqSection):is(.sectionSoft, .textDark) {
+	max-width: none;
+	margin-inline: calc(50% - 50vw);
+}
+
+.formSection:is(.sectionSoft, .textDark) > * {
+	max-width: 40rem;
+	margin-inline: auto;
+}
+
+.faqSection:is(.sectionSoft, .textDark) > * {
+	max-width: 52rem;
+	margin-inline: auto;
+}
+
+.textDark :is(h3, footer, label, summary, .beliefBody, .formMessage),
+.textDark :is(.pullQuote, .pullQuote p, .testimonialItem) {
+	color: var(--contrastColor);
+}
+
+.textDark .beliefColumn {
+	border-color: color-mix(in srgb, var(--contrastColor) 40%, transparent);
+}
+
+.textDark .faqItem,
+.textDark .testimonialItem + .testimonialItem {
+	border-color: color-mix(in srgb, var(--contrastColor) 35%, transparent);
+}
+
+.textDark :is(input, textarea) {
+	color: var(--contrastColor);
+	border-color: color-mix(in srgb, var(--contrastColor) 60%, transparent);
+}
+
+.textDark :is(input, textarea):focus {
+	border-color: var(--contrastColor);
+	background: rgb(255 255 255 / 0.08);
+}
+
+.textDark :is(button, .heroCta) {
+	background: var(--contrastColor);
+	border-color: var(--contrastColor);
+	color: var(--primaryColor);
+}
+
+.textCharcoal :is(button, .heroCta) {
+	color: var(--charcoalColor);
+}
+
+.textDark :is(button, .heroCta):hover {
+	background: transparent;
+	color: var(--contrastColor);
 }

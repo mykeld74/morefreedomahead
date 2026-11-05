@@ -17,9 +17,9 @@
 			height={500}
 		/>
 	{/if}
+	<p class="eventDate">{formatEventWhen(event.startAt, event.endAt)}</p>
 	<h3><a href={resolve(`/events/${event.slug}`)}>{event.title}</a></h3>
-	{#if event.location}<p>{event.location}</p>{/if}
-	<p>{formatEventWhen(event.startAt, event.endAt)}</p>
+	{#if event.location}<p class="eventPlace">{event.location}</p>{/if}
 	{#if event.summary}<p>{event.summary}</p>{/if}
-	<a href={resolve(`/events/${event.slug}`)}>View event</a>
+	<a class="learnMoreButton" href={resolve(`/events/${event.slug}`)}>View event</a>
 </article>

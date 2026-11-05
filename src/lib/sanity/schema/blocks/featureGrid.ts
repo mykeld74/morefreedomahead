@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity';
 import { ThListIcon } from '@sanity/icons/ThList';
+import { eyebrowField } from '../objects/eyebrow';
+import { bandFields } from '../objects/band';
 
 export const featureGrid = defineType({
 	name: 'featureGrid',
@@ -7,6 +9,7 @@ export const featureGrid = defineType({
 	type: 'object',
 	icon: ThListIcon,
 	fields: [
+		eyebrowField(),
 		defineField({ name: 'heading', type: 'string' }),
 		defineField({
 			name: 'items',
@@ -24,7 +27,8 @@ export const featureGrid = defineType({
 					preview: { select: { title: 'title', subtitle: 'body' } }
 				})
 			]
-		})
+		}),
+		...bandFields()
 	],
 	preview: {
 		select: { title: 'heading' },

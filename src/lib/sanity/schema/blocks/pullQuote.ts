@@ -1,5 +1,6 @@
 import { defineField, defineType } from 'sanity';
 import { BlockquoteIcon } from '@sanity/icons/Blockquote';
+import { bandFields } from '../objects/band';
 
 export const pullQuote = defineType({
 	name: 'pullQuote',
@@ -13,7 +14,8 @@ export const pullQuote = defineType({
 			rows: 3,
 			validation: (rule) => rule.required()
 		}),
-		defineField({ name: 'attribution', type: 'string' })
+		defineField({ name: 'attribution', type: 'string' }),
+		...bandFields()
 	],
 	preview: {
 		select: { title: 'quote', subtitle: 'attribution' },

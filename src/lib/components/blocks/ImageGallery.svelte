@@ -6,6 +6,7 @@
 </script>
 
 <section class="sectionPlain">
+	{#if block.eyebrow}<p class="eyebrow">{block.eyebrow}</p>{/if}
 	{#if block.heading}<h2>{block.heading}</h2>{/if}
 	<div class="galleryGrid">
 		{#each block.images ?? [] as image (image._key)}

@@ -1,6 +1,7 @@
 import { defineField, defineType } from 'sanity';
 import { ImageIcon } from '@sanity/icons/Image';
 import { hrefField } from '../objects/linkFields';
+import { eyebrowField } from '../objects/eyebrow';
 
 export const hero = defineType({
 	name: 'hero',
@@ -8,6 +9,7 @@ export const hero = defineType({
 	type: 'object',
 	icon: ImageIcon,
 	fields: [
+		eyebrowField(),
 		defineField({ name: 'headline', type: 'string', validation: (rule) => rule.required() }),
 		defineField({
 			name: 'lines',
